@@ -1,0 +1,48 @@
+components:
+    schemas:
+        User:
+            type: object
+            properties:
+                userId:
+                    type: string
+                userName:
+                    type: string
+
+/api/v1/users:
+    get:
+        summary: Get All Users
+        description: __Get All Users__
+        tags:
+            - Users
+        security:
+            - bearerAuth: []
+        produces:
+            - application/json
+        responses:
+            200:
+                description: __OK__
+                content:
+                    application/json:
+                        schema:
+                            type: array
+                            items:
+                                $ref: "#/components/schemas/User"
+
+            500:
+                description: __Internal Server Error__
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                message:
+                                    type: string
+            404:
+                description: __Not Found__
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                message:
+                                    type: string
