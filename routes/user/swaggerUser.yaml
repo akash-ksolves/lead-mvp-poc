@@ -1,0 +1,245 @@
+components:
+    schemas:
+        User:
+            type: object
+            properties:
+                id:
+                    type: string
+                userName:
+                    type: string
+                createdAt:
+                    type: string
+                updatedAt:
+                    type: string
+
+/api/v1/user:
+    post:
+        summary: Create an user
+        description: __Create an user__
+        tags:
+            - Users
+        security:
+            - bearerAuth: []
+        produces:
+            - application/json
+        requestBody:
+            required: true
+            description: __Create Field of User(All Fields Required)__
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            userName:
+                                type: string
+                                required: true
+                            password:
+                                type: string
+                                required: true
+                            email:
+                                type: string
+        responses:
+            200:
+                description: __OK__
+                content:
+                    application/json:
+                        schema:
+                            type: array
+                            items:
+                                $ref: "#/components/schemas/User"
+            500:
+                description: __Internal Server Error__
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                message:
+                                    type: string
+    get:
+        summary: Get All Users
+        description: __Get All Users__
+        tags:
+            - Users
+        security:
+            - bearerAuth: []
+        produces:
+            - application/json
+        responses:
+            200:
+                description: __OK__
+                content:
+                    application/json:
+                        schema:
+                            type: array
+                            items:
+                                $ref: "#/components/schemas/User"
+
+            500:
+                description: __Internal Server Error__
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                message:
+                                    type: string
+            404:
+                description: __Not Found__
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                message:
+                                    type: string
+
+/api/v1/user/{id}:
+    get:
+        summary: Get an User by id
+        description: __Get an User by id__
+        tags:
+            - Users
+        security:
+            - bearerAuth: []
+        produces:
+            - application/json
+        parameters:
+            - in: path
+              name: id
+              required: true
+              schema:
+                  type: string
+              description: The user Id
+        responses:
+            200:
+                description: __OK__
+                content:
+                    application/json:
+                        schema:
+                            type: array
+                            items:
+                                $ref: "#/components/schemas/User"
+
+            500:
+                description: __Internal Server Error__
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                message:
+                                    type: string
+            404:
+                description: __Not Found__
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                message:
+                                    type: string
+    put:
+        summary: Get an User by id
+        description: __Get an User by id__
+        tags:
+            - Users
+        security:
+            - bearerAuth: []
+        parameters:
+            - in: path
+              name: id
+              required: true
+              schema:
+                  type: string
+              description: The user Id
+        produces:
+            - application/json
+        requestBody:
+            required: true
+            description: __Update Field of User(All Fields Required)__
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            userName:
+                                type: string
+                                required: true
+                            password:
+                                type: string
+                                required: true
+                            email:
+                                type: string
+        responses:
+            200:
+                description: __OK__
+                content:
+                    application/json:
+                        schema:
+                            type: array
+                            items:
+                                $ref: "#/components/schemas/User"
+
+            500:
+                description: __Internal Server Error__
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                message:
+                                    type: string
+            404:
+                description: __Not Found__
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                message:
+                                    type: string
+    delete:
+        summary: Get an User by id
+        description: __Get an User by id__
+        tags:
+            - Users
+        security:
+            - bearerAuth: []
+        produces:
+            - application/json
+        parameters:
+            - in: path
+              name: id
+              required: true
+              schema:
+                  type: string
+              description: The user Id
+        responses:
+            200:
+                description: __OK__
+                content:
+                    application/json:
+                        schema:
+                            type: array
+                            items:
+                                $ref: "#/components/schemas/User"
+
+            500:
+                description: __Internal Server Error__
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                message:
+                                    type: string
+            404:
+                description: __Not Found__
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                message:
+                                    type: string

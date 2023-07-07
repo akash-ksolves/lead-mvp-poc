@@ -1,4 +1,6 @@
 "use strict";
+delete require.cache[require.resolve("./user.js")];
+
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
 	class User extends Model {
@@ -13,7 +15,28 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	User.init(
 		{
-			firstName: DataTypes.STRING,
+			id: {
+				allowNull: false,
+				autoIncrement: true,
+				primaryKey: true,
+				type: DataTypes.INTEGER,
+			},
+			userName: {
+				type: DataTypes.STRING,
+			},
+			password: {
+				type: DataTypes.STRING,
+			},
+			createdAt: {
+				allowNull: false,
+				type: DataTypes.DATE,
+				defaultValue: new Date(),
+			},
+			updatedAt: {
+				allowNull: false,
+				type: DataTypes.DATE,
+				defaultValue: new Date(),
+			},
 		},
 		{
 			sequelize,
